@@ -1,0 +1,32 @@
+name: r2pa
+channels:
+  - defaults
+dependencies:
+  - python=3.8
+  - h5py
+  - joblib
+  - lxml
+  - matplotlib
+  - networkx
+  - numpy
+  - openpyxl
+  - pandas
+  - pip
+  - pyodbc
+  - scikit-learn
+  - scipy
+  - seaborn
+  - xlrd
+  - ipywidgets
+  - tensorflow=2.3.0
+  - tqdm
+  - arrow
+  - editdistance
+  - pip:
+      - flask
+      - hmmlearn
+      - pm4py
+      - pydot
+      - pygraphviz
+      - sqlalchemy==1.2.10
+      - untangle
