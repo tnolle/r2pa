@@ -1,6 +1,6 @@
 from april import Dataset
 from april.fs import EVENTLOG_DIR
-from april.fs import EventLog
+from april.processmining import EventLog
 
 
 def convert_xes_to_json_event_log(file_name, remove_attributes, rename_attributes):
