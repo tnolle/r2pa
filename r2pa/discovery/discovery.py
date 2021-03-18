@@ -24,6 +24,10 @@ class ProcessDiscoveryResult:
         self.dataset_name = dataset_name
         self.graph = graph
         self.uncached_cases = uncached_cases
+        self.next_event_predictor = None
+        self.use_cache = None
+        self.group_attribute_nodes = None
+        self.next_event_threshold = None
         self.process_discovery_time = process_discovery_time
         self.cache_generation_time = cache_generation_time
         self.case_generation_time = case_generation_time
@@ -586,7 +590,8 @@ def discover_graph_from_cases(dataset, cases, encoder_decoder_attributes, group_
     cases_to_graph_conversion_time = (arrow.now() - convert_cases_to_graph_time_start).total_seconds()
     print(f"creating a graph from the cases took {np.round(cases_to_graph_conversion_time, 2)} seconds\n")
 
-    return ProcessDiscoveryResult(dataset_name=dataset.dataset_name, graph=graph, cases_to_graph_conversion_time=cases_to_graph_conversion_time)
+    return ProcessDiscoveryResult(dataset_name=dataset.dataset_name, graph=graph,
+                                  cases_to_graph_conversion_time=cases_to_graph_conversion_time)
 
 
 def discover_graph_using_next_event_predictor(dataset, next_event_predictor, group_attribute_nodes=False,
@@ -638,9 +643,19 @@ def discover_graph_using_next_event_predictor(dataset, next_event_predictor, gro
     process_discovery_time = (arrow.now() - graph_generation_start_time).total_seconds()
     print(f"discovering the graph took {np.round(process_discovery_time, 2)} seconds")
 
+    if next_event_predictor.use_cache:
+        process_discovery_result.uncached_cases = next_event_predictor.get_uncached_cases()
+    else:
+        process_discovery_result.uncached_cases = None
+
     process_discovery_result.cache_generation_time = cache_generation_time
     process_discovery_result.case_generation_time = case_generation_time
     process_discovery_result.process_discovery_time = process_discovery_time
+
+    process_discovery_result.next_event_threshold = next_event_predictor.next_event_threshold
+    process_discovery_result.next_event_predictor = next_event_predictor.name
+    process_discovery_result.use_cache = next_event_predictor.use_cache
+    process_discovery_result.group_attribute_nodes = group_attribute_nodes
 
     if next_event_predictor.use_cache:
         process_discovery_result.uncached_cases = next_event_predictor.get_uncached_cases()

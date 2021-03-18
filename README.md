@@ -11,7 +11,7 @@ The easiest way to setup an environment is to use Miniconda.
     * If your device does have a GPU replace `tensorflow` with `tensorflow-gpu` in the `environement.yml`
 4. Depending on your operating system you can activate the virtual environment with `conda activate r2pa`.
 5. If you want to make use of a GPU, you must install the CUDA Toolkit. To install the CUDA Toolkit on your computer refer to the [TensorFlow installation guide](https://www.tensorflow.org/install/install_windows).
-6. If you want to quickly install the `april` package, run `pip install -e .` inside the root directory.
+6. If you want to quickly install the `r2pa` package, run `pip install -e .` inside the root directory.
 7. Now you can start the notebook server by `jupyter lab notebooks`.
 
 Note: To use the graph plotting methods, you will have to install Graphviz.
