@@ -90,7 +90,7 @@ class Anomaly(object):
 
         case = Case(label=label)
         for i in range(0, len(p), self.event_len):
-            print(g.nodes[p[i]])
+            # print(g.nodes[p[i]])
             event = Event(name=g.nodes[p[i]]['value'])
             for j in range(1, self.event_len):
                 att = g.nodes[p[i + j]]['name']

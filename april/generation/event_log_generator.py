@@ -218,7 +218,6 @@ class EventLogGenerator(object):
             np.random.seed(seed)
 
         # Build the likelihood graph
-        # TODO: Persist the likelihood graph
         if likelihood_graph is not None:
             self.likelihood_graph = likelihood_graph
         else:
@@ -248,8 +247,8 @@ class EventLogGenerator(object):
             from tqdm import tqdm
             iter = tqdm(range(size), desc='Generate event log')
         elif show_progress == 'tqdm_notebook':
-            from tqdm import tqdm_notebook
-            iter = tqdm_notebook(range(size), desc='Generate event log')
+            from tqdm.notebook import tqdm
+            iter = tqdm(range(size), desc='Generate event log')
         else:
             iter = range(size)
 

@@ -18,7 +18,7 @@ import itertools
 from typing import Iterable
 
 import numpy as np
-from tqdm import tqdm
+from tqdm.notebook import tqdm
 
 from april import EventLogGenerator
 from april.generation import AttributeAnomaly
@@ -93,7 +93,7 @@ def generate_for_process_model(process_model, size=5000, anomalies=None, anomaly
                                        activity_dependency_p=act_dep_p,
                                        attribute_dependency_p=attr_dep_p,
                                        probability_variance_max=p_var,
-                                       seed=seed)
+                                       seed=seed, show_progress='tqdm_notebook')
 
         generator.plot_likelihood_graph(f'graph_{process_model}{postfix}-{anom_p}-{i}.pdf', figsize=(20, 50))
         generator.persist_likelihood_graph(f'graph_{process_model}{postfix}-{anom_p}-{i}.gpickle')
